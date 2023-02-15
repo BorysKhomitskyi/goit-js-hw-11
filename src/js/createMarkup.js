@@ -1,37 +1,33 @@
 export default function createMarkup({largeImageURL, webformatURL, tags, likes, views, comments, downloads}) {
     return `<div class="photo-card">
-        <a class="gallery-item" href="${largeImageURL}">
+        <a href="${largeImageURL}">
           <img
-            class="gallery__image"
             src="${webformatURL}"
             alt="${tags}"
             loading="lazy"
         /></a>
         <div class="info">
-          <div class="info__box">
             <p class="info-item">
-              <b class="material-symbols-outlined">thumb_up</b>
+              <b>Likes</b>
+              ${likes}
             </p>
-            <p class="info-counter">${likes}</p>
-          </div>
-          <div class="info__box">
+
             <p class="info-item">
-              <b class="material-symbols-outlined">visibility</b>
+              <b>Views</b>
+              ${views}
             </p>
-            <p class="info-counter">${views}</p>
-          </div>
-          <div class="info__box">
+           
+
             <p class="info-item">
-              <b class="material-symbols-outlined">forum</b>
+              <b>Comments</b>
+              ${comments}
             </p>
-            <p class="info-counter">${comments}</p>
-          </div>
-          <div class="info__box">
+            
             <p class="info-item">
-              <b class="material-symbols-outlined">download</b>
+              <b>Downloads</b>
+              ${downloads}
             </p>
-            <p class="info-counter">${downloads}</p>
-          </div>
+            
         </div>
       </div>`;
 };
