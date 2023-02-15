@@ -59,7 +59,7 @@ async function onSubmitSearch(e) {
                 .firstElementChild.getBoundingClientRect();
             
             window.scrollBy({
-                top: cardHeight * -100,
+                top: cardHeight * 2,
                 behavior: 'smooth',
             });
         }
@@ -72,7 +72,9 @@ async function onSubmitSearch(e) {
         }
     } catch (error) {
         console.log(error);
-    }
+    } finally {
+        form.reset();
+    };
 }
 
 loadMoreBtn.addEventListener('click', onClickLoadMoreBtn);
