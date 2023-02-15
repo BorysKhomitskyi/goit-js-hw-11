@@ -28,10 +28,11 @@ let currentHits = 0;
 let searchQuery = '';
 
 async function onSubmitSearch(e) {
-    e.preventDefault();
+    e.preventDefault();    
 
     const form = e.currentTarget;
-    const searchQuery = form.elements.searchQuery.value.trim();
+    searchQuery = form.elements.searchQuery.value.trim();
+    
     currentPage = 1;
     
     if (searchQuery === '') {
@@ -59,7 +60,7 @@ async function onSubmitSearch(e) {
                 .firstElementChild.getBoundingClientRect();
             
             window.scrollBy({
-                top: cardHeight * 2,
+                top: cardHeight * -100,
                 behavior: 'smooth',
             });
         }
@@ -74,20 +75,20 @@ async function onSubmitSearch(e) {
         console.log(error);
     } finally {
         form.reset();
-    };
+    }   
 }
 
 loadMoreBtn.addEventListener('click', onClickLoadMoreBtn);
 
 async function onClickLoadMoreBtn() {
-  currentPage += 1;
-  const response = await fetchImages(searchQuery, currentPage);
-  renderCardImg(response.hits);
-  lightbox.refresh();
-  currentHits += response.hits.length;
+    currentPage += 1;
+    const response = await fetchImages(searchQuery, currentPage);
+    renderCardImg(response.hits);
+    lightbox.refresh();
+    currentHits += response.hits.length;
 
-  if (currentHits === response.totalHits) {
-    loadMoreBtn.classList.add('is-hidden');
-    endCollectionText.classList.remove('is-hidden');
+    if (currentHits === response.totalHits) {
+        loadMoreBtn.classList.add('is-hidden');
+        endCollectionText.classList.remove('is-hidden');
   }
 }
